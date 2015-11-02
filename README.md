@@ -1,6 +1,12 @@
 # cli-progress-bar
 Progress bar for cli apps
 
+## Installation
+
+```bash
+composer install dariuszp/cli-progress-bar
+```
+
 ## Usage
 
 ```php
@@ -39,7 +45,7 @@ More features like:
 - animation example (basic.php)
 - etc...
 
-in example directory.
+in [example](examples/) directory.
 
 ----
 
