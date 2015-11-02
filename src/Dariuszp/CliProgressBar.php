@@ -285,7 +285,7 @@ class CliProgressBar
     public function progress($step = 1, $display = true)
     {
         $step = intval($step);
-        $this->setCurrentstep($this->getCurrentstep() + $step);
+        $this->setCurrentstep($this->getCurrentStep() + $step);
 
         if ($display) {
             $this->display();
@@ -297,7 +297,7 @@ class CliProgressBar
     /**
      * @return int
      */
-    public function getCurrentstep()
+    public function getCurrentStep()
     {
         return $this->currentStep;
     }
@@ -330,9 +330,9 @@ class CliProgressBar
      */
     public function draw()
     {
-        $fullValue = floor($this->getCurrentstep() / $this->getSteps() * $this->getBarLength());
+        $fullValue = floor($this->getCurrentStep() / $this->getSteps() * $this->getBarLength());
         $emptyValue = $this->getBarLength() - $fullValue;
-        $prc = number_format(($this->getCurrentstep() / $this->getSteps()) * 100, 1, '.', ' ');
+        $prc = number_format(($this->getCurrentStep() / $this->getSteps()) * 100, 1, '.', ' ');
 
         $colorStart = '';
         $colorEnd = '';
@@ -341,7 +341,7 @@ class CliProgressBar
             $colorEnd = $this->color[1];
         }
 
-        $bar = sprintf("%4\$s%5\$s %3\$.1f%% (%1\$d/%2\$d)", $this->getCurrentstep(), $this->getSteps(), $prc, str_repeat($this->charFull, $fullValue), str_repeat($this->charEmpty, $emptyValue));
+        $bar = sprintf("%4\$s%5\$s %3\$.1f%% (%1\$d/%2\$d)", $this->getCurrentStep(), $this->getSteps(), $prc, str_repeat($this->charFull, $fullValue), str_repeat($this->charEmpty, $emptyValue));
         return sprintf("\r%s%s%s", $colorStart, $bar, $colorEnd);
     }
 
@@ -366,7 +366,7 @@ class CliProgressBar
 
         $this->steps = intval($steps);
 
-        $this->setCurrentStep($this->getCurrentstep());
+        $this->setCurrentStep($this->getCurrentStep());
 
         return $this;
     }
