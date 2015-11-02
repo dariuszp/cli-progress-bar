@@ -393,16 +393,25 @@ class CliProgressBar
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->draw();
     }
 
+    /**
+     * Alias to new line (nl)
+     */
     public function end()
     {
         $this->nl();
     }
 
+    /**
+     * display new line
+     */
     public function nl()
     {
         print "\n";
