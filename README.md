@@ -50,4 +50,5 @@ in [example](examples/) directory.
 ----
 
 License: [MIT](https://opensource.org/licenses/MIT)
+
 Author: Półtorak Dariusz
