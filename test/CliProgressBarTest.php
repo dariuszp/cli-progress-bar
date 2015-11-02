@@ -68,4 +68,34 @@ class CliProgressBarTest extends PHPUnit_Framework_TestCase {
         $bar->setColorToRed();
         $this->assertEquals($bar->draw(), $expected);
     }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidConstructorStepsArgument() {
+        $bar = new CliProgressBar(10, -5);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidConstructorCurrentStepArgument() {
+        $bar = new CliProgressBar(-1);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidSetCurrentStep() {
+        $bar = new CliProgressBar();
+        $bar->setCurrentStep(-10);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidSetProgressTo() {
+        $bar = new CliProgressBar();
+        $bar->setProgressTo(-10);
+    }
 }
