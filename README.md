@@ -1,6 +1,8 @@
 # cli-progress-bar [![Build Status](https://travis-ci.org/dariuszp/cli-progress-bar.png?branch=master)](https://travis-ci.org/dariuszp/cli-progress-bar)
 Progress bar for cli apps
 
+![example animation](examples/img/terminal.gif)
+
 ## Installation
 
 ```bash
