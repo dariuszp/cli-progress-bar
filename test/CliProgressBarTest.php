@@ -6,7 +6,7 @@ class CliProgressBarTest extends PHPUnit_Framework_TestCase {
 
     public function testDummy() {
         $bar = new CliProgressBar();
-        $this->assertTrue($bar->dummy());
+        $this->assertTrue($bar->progress() instanceof CliProgressBar);
     }
 
 }
