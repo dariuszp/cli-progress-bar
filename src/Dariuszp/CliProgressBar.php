@@ -16,14 +16,14 @@ class CliProgressBar
     protected $barLength = 40;
 
     /**
-     * @var string|bool
+     * @var array|bool
      */
     protected $color = false;
 
     /**
      * @var int
      */
-    protected $steps = 1;
+    protected $steps = 100;
 
     /**
      * @var int
@@ -99,12 +99,18 @@ class CliProgressBar
         return $this;
     }
 
+    public function setColorToBlack()
+    {
+        return $this->setColor(30, 39);
+    }
+
     /**
      * @param $start
      * @param $end
      * @return $this
      */
-    protected function setColor($start, $end) {
+    protected function setColor($start, $end)
+    {
         $this->color = array(
             sprintf(self::COLOR_CODE_FORMAT, $start),
             sprintf(self::COLOR_CODE_FORMAT, $end),
@@ -112,35 +118,38 @@ class CliProgressBar
         return $this;
     }
 
-    public function setColorToBlack() {
-        return $this->setColor(30, 39);
-    }
-
-    public function setColorToRed() {
+    public function setColorToRed()
+    {
         return $this->setColor(31, 39);
     }
 
-    public function setColorToGreen() {
+    public function setColorToGreen()
+    {
         return $this->setColor(32, 39);
     }
 
-    public function setColorToYellow() {
+    public function setColorToYellow()
+    {
         return $this->setColor(33, 39);
     }
 
-    public function setColorToBlue() {
+    public function setColorToBlue()
+    {
         return $this->setColor(34, 39);
     }
 
-    public function setColorToMagenta() {
+    public function setColorToMagenta()
+    {
         return $this->setColor(35, 39);
     }
 
-    public function setColorToCyan() {
+    public function setColorToCyan()
+    {
         return $this->setColor(36, 39);
     }
 
-    public function setColorToWhite() {
+    public function setColorToWhite()
+    {
         return $this->setColor(37, 39);
     }
 
