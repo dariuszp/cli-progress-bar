@@ -20,7 +20,7 @@ class CliProgressBar
     /**
      * @var int
      */
-    protected $current = 0;
+    protected $currentStep = 0;
     /**
      * @var string
      */
@@ -46,9 +46,9 @@ class CliProgressBar
      */
     protected $alternateCharFull = 'X';
 
-    public function __construct($steps = 100, $current = 0, $forceDefaultProgressBar = false)
+    public function __construct($steps = 100, $currentStep = 0, $forceDefaultProgressBar = false)
     {
-        $this->setProgressTo($current);
+        $this->setProgressTo($currentStep);
         $this->setSteps($steps);
 
         // Windows terminal is unable to display utf characters and colors
@@ -57,18 +57,14 @@ class CliProgressBar
         }
     }
 
-    public function setProgressTo($current)
+    /**
+     * @param int $currentStep
+     * @return $this
+     */
+    public function setProgressTo($currentStep)
     {
-        $current = intval($current);
-        if ($current < 0) {
-            throw new \InvalidArgumentException('Current step must be 0 or above');
-        }
-
-        if ($current > $this->getSteps()) {
-            $current = $this->getSteps();
-        }
-
-        $this->current = $current;
+        $this->setCurrentstep($currentStep);
+        return $this;
     }
 
     /**
@@ -163,12 +159,12 @@ class CliProgressBar
     }
 
     /**
-     * @param int $current
+     * @param int $currentstep
      * @return $this
      */
-    public function addCurrent($current)
+    public function addCurrentStep($currentStep)
     {
-        $this->current += intval($current);
+        $this->currentStep += intval($currentStep);
         return $this;
     }
 
@@ -252,12 +248,7 @@ class CliProgressBar
     public function progress($step = 1, $display = true)
     {
         $step = intval($step);
-        if (!$step) {
-            throw new \InvalidArgumentException('Step value must be above 0');
-        }
-        if ($this->current < $this->steps) {
-            $this->current += intval($step);
-        }
+        $this->setCurrentstep($this->getCurrentstep() + $step);
 
         if ($display) {
             $this->display();
@@ -276,28 +267,37 @@ class CliProgressBar
      */
     public function draw()
     {
-        $emptyValue = floor($this->getCurrent() / $this->getSteps()) * $this->getBarLength();
+        $emptyValue = floor($this->getCurrentstep() / $this->getSteps()) * $this->getBarLength();
         $fullValue = $this->getBarLength() - $emptyValue;
-        $prc = number_format(($this->getCurrent() / $this->getSteps()) * 100, 1, '.', ' ');
+        $prc = number_format(($this->getCurrentstep() / $this->getSteps()) * 100, 1, '.', ' ');
 
-        return sprintf("\r%$4s%$5s %$3f%% (%$1d/%$2d)", $this->getCurrent(), $this->getSteps(), $prc, $emptyValue, $fullValue);
+        return sprintf("\r%$4s%$5s %$3f%% (%$1d/%$2d)", $this->getCurrentstep(), $this->getSteps(), $prc, $emptyValue, $fullValue);
     }
 
     /**
      * @return int
      */
-    public function getCurrent()
+    public function getCurrentstep()
     {
-        return $this->current;
+        return $this->currentStep;
     }
 
     /**
-     * @param int $current
+     * @param int $currentStep
      * @return $this
      */
-    public function setCurrent($current)
+    public function setCurrentStep($currentStep)
     {
-        $this->current = intval($current);
+        $currentStep = intval($currentStep);
+        if ($currentStep < 0) {
+            throw new \InvalidArgumentException('Current step must be 0 or above');
+        }
+
+        $this->currentStep = $currentStep;
+        if ($this->currentStep > $this->getSteps()) {
+            $this->currentStep = $this->getSteps();
+        }
+
         return $this;
     }
 

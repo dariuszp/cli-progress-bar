@@ -2,7 +2,7 @@
 
 require_once('./../vendor/autoload.php');
 
-use Dariuszp;
+use Dariuszp\CliProgressBar;
 
-$bar = new Dariuszp\CliProgressBar(10);
+$bar = new CliProgressBar(10);
 $bar->progress();
