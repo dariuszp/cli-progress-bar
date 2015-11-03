@@ -6,7 +6,7 @@ Progress bar for cli apps
 ## Installation
 
 ```bash
-composer install dariuszp/cli-progress-bar
+composer require dariuszp/cli-progress-bar
 ```
 
 ## Usage
