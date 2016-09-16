@@ -41,6 +41,24 @@ Output will be:
 XXXX____________________________________ 10.0% (10/100)
 ```
 
+Add text to the progress bar using the following methods
+```php
+use Dariuszp\CliProgressBar;
+$bar = new CliProgressBar(50, 0, "My Custom Text");
+$bar->display();
+$bar->end();
+```
+or
+```php
+use Dariuszp\CliProgressBar;
+$bar = new CliProgressBar();
+$bar->setDetails("My Custom Text");
+$bar->display();
+$bar->end();
+```
+
+Also update asynchronously with setDetails()
+
 More features like:
 - changing progress bar length (basicWithShortBar.php)
 - changing bar color (colors.php)
@@ -54,3 +72,4 @@ in [example](examples/) directory.
 License: [MIT](https://opensource.org/licenses/MIT)
 
 Author: Półtorak Dariusz
+Contributors: [@mathmatrix828 - Mason Phillips](https://github.com/mathmatrix828/)
