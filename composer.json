@@ -2,11 +2,17 @@
     "name": "dariuszp/cli-progress-bar",
     "description": "Cli progress bar",
     "type": "library",
+    "version": "0.0.2-alpha",
     "license": "MIT",
     "authors": [
         {
             "name": "Dariusz Półtorak",
             "email": "poltorak.dariusz@gmail.com"
+        },
+        {
+          "name": "Mason Phillips"
+          "email": "math.matrix@icloud.com",
+          "role": "Contributor"
         }
     ],
     "require": {},
