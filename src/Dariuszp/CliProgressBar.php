@@ -33,6 +33,11 @@ class CliProgressBar
     /**
      * @var string
      */
+    protected $detail = "";
+
+    /**
+     * @var string
+     */
     protected $charEmpty = '░';
 
     /**
@@ -59,10 +64,11 @@ class CliProgressBar
      */
     protected $alternateCharFull = 'X';
 
-    public function __construct($steps = 100, $currentStep = 0, $forceDefaultProgressBar = false)
+    public function __construct($steps = 100, $currentStep = 0, $details = "", $forceDefaultProgressBar = false)
     {
         $this->setSteps($steps);
         $this->setProgressTo($currentStep);
+        $this->setDetails($details);
 
         // Windows terminal is unable to display utf characters and colors
         if (!$forceDefaultProgressBar && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
@@ -278,6 +284,21 @@ class CliProgressBar
     }
 
     /**
+     * @param string $details
+     * @return $this
+     */
+    public function setDetails($details)
+    {
+        $this->detail = $details;
+        return $this;
+    }
+
+    public function getDetails()
+    {
+        return $this->detail;
+    }
+
+    /**
      * @param int $step
      * @param bool $display
      * @return $this
@@ -341,8 +362,10 @@ class CliProgressBar
             $colorEnd = $this->color[1];
         }
 
+        $userDetail = $this->getDetails();
+        $userDetail = ((strlen($userDetail) > 1) ? "{$userDetail} " : "");
         $bar = sprintf("%4\$s%5\$s %3\$.1f%% (%1\$d/%2\$d)", $this->getCurrentStep(), $this->getSteps(), $prc, str_repeat($this->charFull, $fullValue), str_repeat($this->charEmpty, $emptyValue));
-        return sprintf("\r%s%s%s", $colorStart, $bar, $colorEnd);
+        return sprintf("\r%s%s%s%s", $colorStart, $userDetail, $bar, $colorEnd);
     }
 
     /**
