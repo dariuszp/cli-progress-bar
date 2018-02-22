@@ -338,7 +338,7 @@ class CliProgressBar
      * @param bool $display
      * @return $this
      */
-    public function progress(string $step = 1, bool $display = true): self
+    public function progress(int $step = 1, bool $display = true): self
     {
         $this->setCurrentstep($this->getCurrentStep() + $step);
 
