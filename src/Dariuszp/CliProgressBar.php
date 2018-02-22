@@ -400,7 +400,7 @@ class CliProgressBar
 
         $userDetail = $this->getDetails();
         $userDetail = ((strlen($userDetail) > 1) ? "{$userDetail} " : "");
-        $bar = sprintf("%4\$s%5\$s %3\$.1f%% (%1\$d/%2\$d)", $this->getCurrentStep(), $this->getSteps(), $prc, str_repeat($this->charFull, $fullValue), str_repeat($this->charEmpty, $emptyValue));
+        $bar = sprintf("%4\$s%5\$s %3\$.1f%% (%1\$d/%2\$d)", $this->getCurrentStep(), $this->getSteps(), $prc, str_repeat($this->charFull, (int) $fullValue), str_repeat($this->charEmpty, (int) $emptyValue));
         return sprintf("\r%s%s%s%s", $colorStart, $userDetail, $bar, $colorEnd);
     }
 
