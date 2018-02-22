@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace Dariuszp;
 
+use InvalidArgumentException;
+
 /**
  * Class CliProgressBar
- * @package Dariuszp
  */
 class CliProgressBar
 {
@@ -363,7 +364,7 @@ class CliProgressBar
     public function setCurrentStep(int $currentStep): self
     {
         if ($currentStep < 0) {
-            throw new \InvalidArgumentException('Current step must be 0 or above');
+            throw new InvalidArgumentException('Current step must be 0 or above');
         }
 
         $this->currentStep = $currentStep;
@@ -418,7 +419,7 @@ class CliProgressBar
     public function setSteps(int $steps): self
     {
         if ($steps < 0) {
-            throw new \InvalidArgumentException('Steps amount must be 0 or above');
+            throw new InvalidArgumentException('Steps amount must be 0 or above');
         }
 
         $this->steps = $steps;
@@ -443,7 +444,7 @@ class CliProgressBar
     public function setBarLength(int $barLength): self
     {
         if ($barLength < 1) {
-            throw new \InvalidArgumentException('Progress bar length must be above 0');
+            throw new InvalidArgumentException('Progress bar length must be above 0');
         }
         $this->barLength = $barLength;
         return $this;
