@@ -460,6 +460,8 @@ class CliProgressBar
 
     /**
      * Alias to new line (nl)
+     *
+     * @return void
      */
     public function end(): void
     {
@@ -468,6 +470,8 @@ class CliProgressBar
 
     /**
      * display new line
+     *
+     * @return void
      */
     public function nl(): void
     {
