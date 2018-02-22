@@ -1,10 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Dariuszp;
 
+use InvalidArgumentException;
+
 /**
  * Class CliProgressBar
- * @package Dariuszp
  */
 class CliProgressBar
 {
@@ -64,7 +66,7 @@ class CliProgressBar
      */
     protected $alternateCharFull = 'X';
 
-    public function __construct($steps = 100, $currentStep = 0, $details = "", $forceDefaultProgressBar = false)
+    public function __construct(int $steps = 100,int $currentStep = 0,string $details = "",bool $forceDefaultProgressBar = false)
     {
         $this->setSteps($steps);
         $this->setProgressTo($currentStep);
@@ -80,7 +82,7 @@ class CliProgressBar
      * @param int $currentStep
      * @return $this
      */
-    public function setProgressTo($currentStep)
+    public function setProgressTo(int $currentStep): self
     {
         $this->setCurrentstep($currentStep);
         return $this;
@@ -89,33 +91,19 @@ class CliProgressBar
     /**
      * @return $this
      */
-    public function displayDefaultProgressBar()
+    public function displayDefaultProgressBar(): self
     {
         $this->charEmpty = $this->defaultCharEmpty;
         $this->charFull = $this->defaultCharFull;
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function setColorToDefault()
-    {
-        $this->color = false;
-        return $this;
-    }
-
-    public function setColorToBlack()
-    {
-        return $this->setColor(30, 39);
-    }
-
-    /**
+     /**
      * @param $start
      * @param $end
      * @return $this
      */
-    protected function setColor($start, $end)
+    protected function setColor(int $start,int $end): self
     {
         $this->color = array(
             sprintf(self::COLOR_CODE_FORMAT, $start),
@@ -123,38 +111,76 @@ class CliProgressBar
         );
         return $this;
     }
+    
+    /**
+     * @return $this
+     */
+    public function setColorToDefault(): self
+    {
+        $this->color = false;
+        return $this;
+    }
+    
+    /**
+    * @return $this
+    */
+    public function setColorToBlack(): self
+    {
+        return $this->setColor(30, 39);
+    }
 
-    public function setColorToRed()
+    /**
+    * @return $this
+    */
+    public function setColorToRed(): self
     {
         return $this->setColor(31, 39);
     }
 
-    public function setColorToGreen()
+    /**
+    * @return $this
+    */
+    public function setColorToGreen(): self
     {
         return $this->setColor(32, 39);
     }
 
-    public function setColorToYellow()
+    /**
+    * @return $this
+    */
+    public function setColorToYellow(): self
     {
         return $this->setColor(33, 39);
     }
 
-    public function setColorToBlue()
+    /**
+    * @return $this
+    */
+    public function setColorToBlue(): self
     {
         return $this->setColor(34, 39);
     }
 
-    public function setColorToMagenta()
+    /**
+    * @return $this
+    */
+    public function setColorToMagenta(): self
     {
         return $this->setColor(35, 39);
     }
 
-    public function setColorToCyan()
+    /**
+    * @return $this
+    */
+    public function setColorToCyan(): self
     {
         return $this->setColor(36, 39);
     }
 
-    public function setColorToWhite()
+    /**
+    * @return $this
+    */
+    public function setColorToWhite(): self
     {
         return $this->setColor(37, 39);
     }
@@ -162,39 +188,45 @@ class CliProgressBar
     /**
      * @return string
      */
-    public function getDefaultCharEmpty()
+    public function getDefaultCharEmpty(): string
     {
-        return $this->defaultCharEmpty;
+        return (string) $this->defaultCharEmpty;
     }
 
     /**
      * @param string $defaultCharEmpty
+     * 
+     * @return $this
      */
-    public function setDefaultCharEmpty($defaultCharEmpty)
+    public function setDefaultCharEmpty(string $defaultCharEmpty): self
     {
         $this->defaultCharEmpty = $defaultCharEmpty;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getDefaultCharFull()
+    public function getDefaultCharFull(): string
     {
         return $this->defaultCharFull;
     }
 
     /**
      * @param string $defaultCharFull
+     *
+     * @return $this
      */
-    public function setDefaultCharFull($defaultCharFull)
+    public function setDefaultCharFull(string $defaultCharFull): self
     {
         $this->defaultCharFull = $defaultCharFull;
+        return $this;
     }
 
     /**
      * @return $this
      */
-    public function displayAlternateProgressBar()
+    public function displayAlternateProgressBar(): self
     {
         $this->charEmpty = $this->alternateCharEmpty;
         $this->charFull = $this->alternateCharFull;
@@ -205,25 +237,25 @@ class CliProgressBar
      * @param int $currentStep
      * @return $this
      */
-    public function addCurrentStep($currentStep)
+    public function addCurrentStep(int $currentStep): self
     {
-        $this->currentStep += intval($currentStep);
+        $this->currentStep += $currentStep;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCharEmpty()
+    public function getCharEmpty(): string
     {
-        return $this->charEmpty;
+        return (string) $this->charEmpty;
     }
 
     /**
      * @param string $charEmpty
      * @return $this
      */
-    public function setCharEmpty($charEmpty)
+    public function setCharEmpty(string $charEmpty): self
     {
         $this->charEmpty = $charEmpty;
         return $this;
@@ -232,16 +264,16 @@ class CliProgressBar
     /**
      * @return string
      */
-    public function getCharFull()
+    public function getCharFull(): string
     {
-        return $this->charFull;
+        return (string) $this->charFull;
     }
 
     /**
      * @param string $charFull
      * @return $this
      */
-    public function setCharFull($charFull)
+    public function setCharFull(string $charFull): self
     {
         $this->charFull = $charFull;
         return $this;
@@ -250,16 +282,16 @@ class CliProgressBar
     /**
      * @return string
      */
-    public function getAlternateCharEmpty()
+    public function getAlternateCharEmpty(): string
     {
-        return $this->alternateCharEmpty;
+        return (string) $this->alternateCharEmpty;
     }
 
     /**
      * @param string $alternateCharEmpty
      * @return $this
      */
-    public function setAlternateCharEmpty($alternateCharEmpty)
+    public function setAlternateCharEmpty(string $alternateCharEmpty): self
     {
         $this->alternateCharEmpty = $alternateCharEmpty;
         return $this;
@@ -268,16 +300,16 @@ class CliProgressBar
     /**
      * @return string
      */
-    public function getAlternateCharFull()
+    public function getAlternateCharFull(): string
     {
-        return $this->alternateCharFull;
+        return (string) $this->alternateCharFull;
     }
 
     /**
      * @param string $alternateCharFull
      * @return $this
      */
-    public function setAlternateCharFull($alternateCharFull)
+    public function setAlternateCharFull(string $alternateCharFull): self
     {
         $this->alternateCharFull = $alternateCharFull;
         return $this;
@@ -287,13 +319,16 @@ class CliProgressBar
      * @param string $details
      * @return $this
      */
-    public function setDetails($details)
+    public function setDetails(string $details): self
     {
         $this->detail = $details;
         return $this;
     }
 
-    public function getDetails()
+    /**
+    * @return string
+    */ 
+    public function getDetails(): string
     {
         return $this->detail;
     }
@@ -303,9 +338,8 @@ class CliProgressBar
      * @param bool $display
      * @return $this
      */
-    public function progress($step = 1, $display = true)
+    public function progress(int $step = 1, bool $display = true): self
     {
-        $step = intval($step);
         $this->setCurrentstep($this->getCurrentStep() + $step);
 
         if ($display) {
@@ -318,7 +352,7 @@ class CliProgressBar
     /**
      * @return int
      */
-    public function getCurrentStep()
+    public function getCurrentStep(): int
     {
         return $this->currentStep;
     }
@@ -327,11 +361,10 @@ class CliProgressBar
      * @param int $currentStep
      * @return $this
      */
-    public function setCurrentStep($currentStep)
+    public function setCurrentStep(int $currentStep): self
     {
-        $currentStep = intval($currentStep);
         if ($currentStep < 0) {
-            throw new \InvalidArgumentException('Current step must be 0 or above');
+            throw new InvalidArgumentException('Current step must be 0 or above');
         }
 
         $this->currentStep = $currentStep;
@@ -341,7 +374,10 @@ class CliProgressBar
         return $this;
     }
 
-    public function display()
+    /**
+    * @return void
+    */
+    public function display(): void
     {
         print $this->draw();
     }
@@ -349,7 +385,7 @@ class CliProgressBar
     /**
      * @return string
      */
-    public function draw()
+    public function draw(): string
     {
         $fullValue = floor($this->getCurrentStep() / $this->getSteps() * $this->getBarLength());
         $emptyValue = $this->getBarLength() - $fullValue;
@@ -364,14 +400,14 @@ class CliProgressBar
 
         $userDetail = $this->getDetails();
         $userDetail = ((strlen($userDetail) > 1) ? "{$userDetail} " : "");
-        $bar = sprintf("%4\$s%5\$s %3\$.1f%% (%1\$d/%2\$d)", $this->getCurrentStep(), $this->getSteps(), $prc, str_repeat($this->charFull, $fullValue), str_repeat($this->charEmpty, $emptyValue));
+        $bar = sprintf("%4\$s%5\$s %3\$.1f%% (%1\$d/%2\$d)", $this->getCurrentStep(), $this->getSteps(), $prc, str_repeat($this->charFull, (int) $fullValue), str_repeat($this->charEmpty, (int) $emptyValue));
         return sprintf("\r%s%s%s%s", $colorStart, $userDetail, $bar, $colorEnd);
     }
 
     /**
      * @return int
      */
-    public function getSteps()
+    public function getSteps(): int
     {
         return $this->steps;
     }
@@ -380,14 +416,13 @@ class CliProgressBar
      * @param int $steps
      * @return $this
      */
-    public function setSteps($steps)
+    public function setSteps(int $steps): self
     {
-        $steps = intval($steps);
         if ($steps < 0) {
-            throw new \InvalidArgumentException('Steps amount must be 0 or above');
+            throw new InvalidArgumentException('Steps amount must be 0 or above');
         }
 
-        $this->steps = intval($steps);
+        $this->steps = $steps;
 
         $this->setCurrentStep($this->getCurrentStep());
 
@@ -397,7 +432,7 @@ class CliProgressBar
     /**
      * @return int
      */
-    public function getBarLength()
+    public function getBarLength(): int
     {
         return $this->barLength;
     }
@@ -406,11 +441,10 @@ class CliProgressBar
      * @param $barLength
      * @return $this
      */
-    public function setBarLength($barLength)
+    public function setBarLength(int $barLength): self
     {
-        $barLength = intval($barLength);
         if ($barLength < 1) {
-            throw new \InvalidArgumentException('Progress bar length must be above 0');
+            throw new InvalidArgumentException('Progress bar length must be above 0');
         }
         $this->barLength = $barLength;
         return $this;
@@ -419,23 +453,27 @@ class CliProgressBar
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->draw();
     }
 
     /**
      * Alias to new line (nl)
+     *
+     * @return void
      */
-    public function end()
+    public function end(): void
     {
         $this->nl();
     }
 
     /**
      * display new line
+     *
+     * @return void
      */
-    public function nl()
+    public function nl(): void
     {
         print "\n";
     }

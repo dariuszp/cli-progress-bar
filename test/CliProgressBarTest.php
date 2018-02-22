@@ -2,7 +2,7 @@
 
 use Dariuszp\CliProgressBar;
 
-class CliProgressBarTest extends PHPUnit_Framework_TestCase {
+class CliProgressBarTest extends \PHPUnit\Framework\TestCase {
 
     public function testDefaultSettings() {
         $bar = new CliProgressBar();
