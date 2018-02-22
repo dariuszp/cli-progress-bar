@@ -1,4 +1,4 @@
-# cli-progress-bar [![Build Status](https://travis-ci.org/azjezz/cli-progress-bar.png?branch=master)](https://travis-ci.org/azjezz/cli-progress-bar)
+# cli-progress-bar [![Build Status](https://travis-ci.org/dariuszp/cli-progress-bar.png?branch=master)](https://travis-ci.org/dariuszp/cli-progress-bar)
 Progress bar for cli apps
 
 ![example animation](examples/img/terminal.gif)
