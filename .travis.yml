@@ -6,4 +6,4 @@ php:
   - hhvm
 
 install:
-  - composer --prefer-source install;
+  - composer install;
