@@ -2,7 +2,7 @@
     "name": "dariuszp/cli-progress-bar",
     "description": "Cli progress bar",
     "type": "library",
-    "version": "0.0.2-alpha",
+    "version": "1.0.3",
     "license": "MIT",
     "authors": [
         {
