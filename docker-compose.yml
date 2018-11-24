@@ -1,0 +1,12 @@
+version: "3"
+services:
+    php72:
+        image: "php:7.2-alpine"
+        working_dir: "/app"
+        volumes:
+            - "./:/app"
+    composer:
+        image: "composer:latest"
+        working_dir: "/app"
+        volumes:
+            - "./:/app"

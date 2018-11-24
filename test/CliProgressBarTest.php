@@ -2,7 +2,7 @@
 
 use Dariuszp\CliProgressBar;
 
-class CliProgressBarTest extends PHPUnit_Framework_TestCase {
+class CliProgressBarTest extends \PHPUnit\Framework\TestCase {
 
     public function testDefaultSettings() {
         $bar = new CliProgressBar();
@@ -73,14 +73,14 @@ class CliProgressBarTest extends PHPUnit_Framework_TestCase {
      * @expectedException InvalidArgumentException
      */
     public function testInvalidConstructorStepsArgument() {
-        $bar = new CliProgressBar(10, -5);
+        new CliProgressBar(10, -5);
     }
 
     /**
      * @expectedException InvalidArgumentException
      */
     public function testInvalidConstructorCurrentStepArgument() {
-        $bar = new CliProgressBar(-1);
+        new CliProgressBar(-1);
     }
 
     /**
